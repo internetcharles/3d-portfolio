@@ -171,9 +171,6 @@ camera.position.set(11.5, 8, 5.6)
 camera.lookAt(9, 6, 3)
 scene.add(camera)
 
-gui.add(camera.position, 'x', -30, 30, 0.1)
-gui.add(camera.position, 'z', -30, 30, 0.1)
-
 
 const sphere = new THREE.SphereGeometry(0.15);
 
