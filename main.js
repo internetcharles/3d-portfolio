@@ -1,10 +1,7 @@
 import './style.css'
 import * as THREE from 'three'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
-import * as dat from 'dat.gui';
 import * as TWEEN from '@tweenjs/tween.js';
-import { gsap } from 'gsap';
 
 
 /**
@@ -47,7 +44,7 @@ const scene = new THREE.Scene()
 const fontLoader = new THREE.FontLoader()
 
 fontLoader.load(
-  '/static/helvetiker_regular.typeface.json',
+  '/helvetiker_regular.typeface.json',
   (font) =>
   {
       const textGeometry = new THREE.TextGeometry(
@@ -106,7 +103,7 @@ const sizes = {
 const gltfLoader = new GLTFLoader();
 
 gltfLoader.load(
-  '/static/room.glb',
+  '/room.glb',
   (gltf) => {
   gltf.scene.traverse(function(node) {
     if (node instanceof THREE.Mesh) {
@@ -118,7 +115,7 @@ gltfLoader.load(
 )
 
 gltfLoader.load(
-  '/static/polyman.glb',
+  '/polyman.glb',
   (gltf) => {
   gltf.scene.traverse(function(node) {
     if (node instanceof THREE.Mesh) {
@@ -132,7 +129,7 @@ gltfLoader.load(
 )
 
 gltfLoader.load(
-  '/static/projects.glb',
+  '/projects.glb',
   (gltf) => {
   gltf.scene.traverse(function(node) {
     if (node instanceof THREE.Mesh) {
