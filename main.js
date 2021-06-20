@@ -218,12 +218,17 @@ spotlight.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0xf
 spotlight.castShadow = true;
 scene.add(spotlight);
 
+const pointlight2 = new THREE.PointLight(0xFFFFFF, 1.0);
+spotlight.position.set(-11, 2, -11);
+spotlight.castShadow = true;
+scene.add(pointlight2);
+
 const rectLight3 = new THREE.RectAreaLight( 0x0000ff, 200, 0.8, 0.8 );
 rectLight3.position.set( -2.6, 2.85, -2.6 );
 rectLight3.rotateY(180)
 scene.add( rectLight3 );
 
-const ambientLight = new THREE.AmbientLight(0xffffff, 1);
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
 scene.add(ambientLight)
 
 const tweenCamera = (camera, position, duration, target) => {   
