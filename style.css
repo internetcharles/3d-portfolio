@@ -1,5 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap');
+
 canvas {
   position: fixed;
   top: 0;
   left: 0;
 }
+
+.about {
+  position: fixed;
+  top: 80%;
+  left: 80%;
+  /* bring your own prefixes */
+  transform: translate(-90%, -90%);
+  color: white;
+  display: flex;
+  font-size: 40px;
+  font-family: 'Staatliches', cursive;
+}
+
+.about-text {
+  color:rgb(0, 255, 213);
+}
+
+.projects-text {
+  color: #ff00f2
+}
+
+.credits-text {
+  color: #00a2ff
+}
+
+.divider {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.title {
+  font-size: 30px;
+  font-family: 'Staatliches', cursive;
+  margin-bottom: 10px;
+}
+
+.tech {
+  font-size: 20px;
+  font-family: 'Work Sans', sans-serif;
+  margin-bottom: 10px;
+}
+
+.description {
+  font-family: 'Work Sans', sans-serif;
+}
+
+.project-01 {
+  margin-bottom: 30px;
+}
+
+.project-02 {
+  margin-bottom: 30px;
+}
+
+.projects {
+  position: absolute;  /* let us position ourself inside the container */
+  top: 52%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -52%);
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  visibility: hidden;
+}
+
+
+@media only screen and (max-width: 1200px) {
+  .about {
+    position: fixed;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.fadein {
+  visibility: visible;
+  animation: fadeIn 4s linear forwards;
+}
+
+.fadeout {
+  animation: fadeOut 1s linear forwards;
+}
+
+@keyframes fadeIn {
+0% { opacity:0; }
+100% { opacity:1; } 
+}
+
+@keyframes fadeOut {
+  0% { opacity:1; }
+  100% { opacity:0; visibility: hidden; } 
+  }
