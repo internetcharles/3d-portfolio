@@ -103,9 +103,6 @@ const sizes = {
     height: window.innerHeight
 }
 
-const axesHelper = new THREE.AxesHelper( 5 );
-scene.add( axesHelper );
-
 const gltfLoader = new GLTFLoader();
 
 gltfLoader.load(
