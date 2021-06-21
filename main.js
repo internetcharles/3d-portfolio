@@ -105,11 +105,6 @@ const gltfLoader = new GLTFLoader();
 gltfLoader.load(
   '/room.glb',
   (gltf) => {
-  gltf.scene.traverse(function(node) {
-    if (node instanceof THREE.Mesh) {
-      node.castShadow = true;
-    }
-  });
   scene.add(gltf.scene);
   }
 )
@@ -131,11 +126,6 @@ gltfLoader.load(
 gltfLoader.load(
   '/projects.glb',
   (gltf) => {
-  gltf.scene.traverse(function(node) {
-    if (node instanceof THREE.Mesh) {
-      node.castShadow = true;
-    }
-  });
   gltf.scene.position.set(-10, 2, -10)
   scene.add(gltf.scene);
   }
@@ -228,7 +218,7 @@ rectLight3.position.set( -2.6, 2.85, -2.6 );
 rectLight3.rotateY(180)
 scene.add( rectLight3 );
 
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.1);
 scene.add(ambientLight)
 
 const tweenCamera = (camera, position, duration, target) => {   
@@ -279,8 +269,6 @@ const renderer = new THREE.WebGLRenderer({
     antialias: true
 })
 
-renderer.shadowMap.enabled = true
-renderer.shadowMap.type = THREE.PCFSoftShadowMap
 renderer.setClearColor(0x000000)
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
