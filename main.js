@@ -104,7 +104,8 @@ const sizes = {
 /**
  * Loaders
  */
- const loadingBarElement = document.querySelector('.loading-bar')
+ const loadingBarElement = document.querySelector('.loading-bar');
+ const aboutElement = document.querySelector('.about');
 
  const loadingManager = new THREE.LoadingManager(
     // Loaded
@@ -117,6 +118,9 @@ const sizes = {
           loadingBarElement.classList.add('ended')
           loadingBarElement.style.transform = ''
       }, 500)
+      window.setTimeout(() => {
+        aboutElement.classList.add('fadein')
+      }, 2000)
     },
       // Progress
     (itemUrl, itemsLoaded, itemsTotal) =>

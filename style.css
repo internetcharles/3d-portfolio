@@ -17,6 +17,7 @@ canvas {
   display: flex;
   font-size: 40px;
   font-family: 'Staatliches', cursive;
+  visibility: hidden;
 }
 
 .about-text {
