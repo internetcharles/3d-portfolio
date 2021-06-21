@@ -2,6 +2,7 @@ import './style.css'
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import * as TWEEN from '@tweenjs/tween.js';
+import { gsap } from 'gsap';
 
 
 /**
@@ -100,7 +101,32 @@ const sizes = {
     height: window.innerHeight
 }
 
-const gltfLoader = new GLTFLoader();
+/**
+ * Loaders
+ */
+ const loadingBarElement = document.querySelector('.loading-bar')
+
+ const loadingManager = new THREE.LoadingManager(
+    // Loaded
+    () =>
+    {
+      window.setTimeout(() =>
+      {
+          gsap.to(overlayMaterial.uniforms.uAlpha, { duration: 3, value: 0, delay: 1 })
+
+          loadingBarElement.classList.add('ended')
+          loadingBarElement.style.transform = ''
+      }, 500)
+    },
+      // Progress
+    (itemUrl, itemsLoaded, itemsTotal) =>
+    {
+        const progressRatio = itemsLoaded / itemsTotal
+        loadingBarElement.style.transform = `scaleX(${progressRatio})`
+    }
+ )
+ const gltfLoader = new GLTFLoader(loadingManager)
+ const cubeTextureLoader = new THREE.CubeTextureLoader(loadingManager)
 
 gltfLoader.load(
   '/room.glb',
@@ -126,6 +152,35 @@ gltfLoader.load(
   }
 );
 
+/**
+ * Overlay
+ */
+
+
+ const overlayGeometry = new THREE.PlaneGeometry(2, 2, 1, 1)
+ const overlayMaterial = new THREE.ShaderMaterial({
+  transparent: true,
+  uniforms:
+  {
+      uAlpha: { value: 1 }
+  },
+  vertexShader: `
+      void main()
+      {
+        gl_Position = vec4(position, 1.0);
+      }
+  `,
+  fragmentShader: `
+  uniform float uAlpha;
+
+  void main()
+  {
+      gl_FragColor = vec4(0.0, 0.0, 0.0, uAlpha);
+  }
+`,
+}) 
+const overlay = new THREE.Mesh(overlayGeometry, overlayMaterial)
+ scene.add(overlay)
 
 window.addEventListener('load', () =>
 {
@@ -193,6 +248,8 @@ const camera = new THREE.PerspectiveCamera(55, sizes.width / sizes.height, 0.1, 
 camera.position.set(11.5, 8, 5.6)
 camera.lookAt(9, 6, 3)
 scene.add(camera)
+
+camera.far = 100;
 
 
 const pointlight2 = new THREE.PointLight(0xFFFFFF, 0.5);
