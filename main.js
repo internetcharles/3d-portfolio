@@ -112,11 +112,6 @@ gltfLoader.load(
 gltfLoader.load(
   '/polyman.glb',
   (gltf) => {
-  gltf.scene.traverse(function(node) {
-    if (node instanceof THREE.Mesh) {
-      node.castShadow = true;
-    }
-  });
   gltf.scene.rotateY(180);
   gltf.scene.position.set(-0.95, 1.1, -1)
   scene.add(gltf.scene);
@@ -200,17 +195,7 @@ camera.lookAt(9, 6, 3)
 scene.add(camera)
 
 
-const sphere = new THREE.SphereGeometry(0.15);
-
-const spotlight = new THREE.SpotLight(0xF7EC98, 1.0);
-spotlight.position.set(-3.1, 3, -1.41);
-spotlight.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0xffffff } ) ) );
-spotlight.castShadow = true;
-scene.add(spotlight);
-
-const pointlight2 = new THREE.PointLight(0xFFFFFF, 1.0);
-spotlight.position.set(-11, 2, -11);
-spotlight.castShadow = true;
+const pointlight2 = new THREE.PointLight(0xFFFFFF, 0.5);
 scene.add(pointlight2);
 
 const rectLight3 = new THREE.RectAreaLight( 0x0000ff, 200, 0.8, 0.8 );

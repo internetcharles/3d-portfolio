@@ -83,6 +83,24 @@ canvas {
   }
 }
 
+@media only screen and (max-width: 1600px) {
+  .title {
+    font-size: 20px;
+    font-family: 'Staatliches', cursive;
+    margin-bottom: 5px;
+  }
+  
+  .tech {
+    font-size: 10px;
+    font-family: 'Work Sans', sans-serif;
+    margin-bottom: 5px;
+  }
+  
+  .description {
+    font-family: 'Work Sans', sans-serif;
+  }
+}
+
 .fadein {
   visibility: visible;
   animation: fadeIn 4s linear forwards;
