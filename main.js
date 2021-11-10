@@ -36,6 +36,7 @@ const canvas = document.querySelector('#bg')
 let viewingProjects = false;
 let viewingAbout = false;
 let viewingHome = true;
+let viewingCredits = false;
 
 
 
@@ -306,6 +307,21 @@ const tweenToAbout = () => {
   new TWEEN.Tween( camera.quaternion ).to( endRotation, 600 ).start();
 }
 
+const tweenToCredits = () => {
+  // backup original rotation
+  var startRotation = camera.quaternion.clone();
+
+  // final rotation (with lookAt)
+  camera.lookAt( 9, 6, 3 );
+  var endRotation = camera.quaternion.clone();
+
+  // revert to original rotation
+  camera.quaternion.copy( startRotation );
+
+  // Tween
+  new TWEEN.Tween( camera.quaternion ).to( endRotation, 600 ).start();
+}
+
 /**
  * Renderer
  */
@@ -344,6 +360,7 @@ const tick = () =>
 
 const projectsElement = document.getElementById('projects');
 const aboutSectionElement = document.getElementById('about-section');
+const creditsSection = document.getElementById('credits-section');
 
 
 document.querySelector('.projects-text').addEventListener("click", () => {
@@ -352,9 +369,12 @@ document.querySelector('.projects-text').addEventListener("click", () => {
     projectsElement.classList.remove('fadeout');
     aboutSectionElement.classList.remove('fadein');
     projectsElement.classList.add('fadeout');
+    creditsSection.classList.remove('fadein');
+    creditsSection.classList.add('fadeout');
     viewingProjects = true;
     viewingAbout = false;
     viewingHome = false;
+    viewingCredits = false;
     tweenCamera(camera, [-5, 2, -10], 5000 );
     setTimeout(() => {
       tweenToProjects()
@@ -371,15 +391,41 @@ document.querySelector('.about-text').addEventListener("click", () => {
     TWEEN.removeAll();
     projectsElement.classList.remove('fadein');
     projectsElement.classList.add('fadeout');
+    creditsSection.classList.remove('fadein');
+    creditsSection.classList.add('fadeout');
     viewingProjects = false;
     viewingAbout = true;
     viewingHome = false;
+    viewingCredits = false;
     tweenCamera(camera, [4, 5, 1], 5000 );
     setTimeout(() => {
       tweenToAbout();
     }, 5000)
     setTimeout(() => {
+      aboutSectionElement.classList.remove('fadeout');
       aboutSectionElement.classList.add('fadein');
+    },6000)
+  }
+});
+
+document.querySelector('.credits-text').addEventListener("click", () => {
+  if (!viewingCredits) {
+    TWEEN.removeAll();
+    projectsElement.classList.remove('fadein');
+    projectsElement.classList.add('fadeout');
+    aboutSectionElement.classList.remove('fadein');
+    aboutSectionElement.classList.add('fadeout');
+    viewingProjects = false;
+    viewingAbout = false;
+    viewingHome = false;
+    viewingCredits = true;
+    tweenCamera(camera, [12.5, 8, 6.6], 5000 );
+    setTimeout(() => {
+      tweenToCredits();
+    }, 5000)
+    setTimeout(() => {
+      creditsSection.classList.remove('fadeout')
+      creditsSection.classList.add('fadein')
     },6000)
   }
 });

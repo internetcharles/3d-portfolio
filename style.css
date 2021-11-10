@@ -80,6 +80,31 @@ canvas {
   border-radius: 5%;
 }
 
+.credits-section {
+  position: absolute;  /* let us position ourself inside the container */
+  top: 52%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -52%);
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  visibility: hidden;
+  padding: 20px;
+  border-radius: 5%;
+}
+
+.credits-header {
+  font-size: 50px;
+  font-family: 'Staatliches', cursive;
+}
+
+.credits-description {
+  font-size: 20px;
+  font-family: 'Work Sans', sans-serif;
+}
+
 .about-me {
   position: absolute;  /* let us position ourself inside the container */
   top: 52%;
