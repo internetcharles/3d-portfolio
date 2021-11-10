@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap');
 
+* {
+  background-color: black;
+}
+
 canvas {
   position: fixed;
   top: 0;
@@ -72,6 +76,34 @@ canvas {
   display: flex;
   flex-direction: column;
   visibility: hidden;
+  padding: 20px;
+  border-radius: 5%;
+}
+
+.about-me {
+  position: absolute;  /* let us position ourself inside the container */
+  top: 52%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -52%);
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 30px;
+  visibility: hidden;
+  padding: 30px;
+  border-radius: 5%;
+}
+
+.charlie-title {
+  font-size: 50px;
+  font-family: 'Staatliches', cursive;
+}
+
+.charlie-description {
+  font-size: 20px;
+  font-family: 'Work Sans', sans-serif;
 }
 
 .loading-bar

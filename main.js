@@ -188,7 +188,6 @@ const overlay = new THREE.Mesh(overlayGeometry, overlayMaterial)
 
 window.addEventListener('load', () =>
 {
-
     // Update sizes
     sizes.width = window.innerWidth
     sizes.height = window.innerHeight
@@ -343,34 +342,46 @@ const tick = () =>
     window.requestAnimationFrame(tick)
 }
 
-const projectsElement = document.getElementById('projects')
+const projectsElement = document.getElementById('projects');
+const aboutSectionElement = document.getElementById('about-section');
+
 
 document.querySelector('.projects-text').addEventListener("click", () => {
-  TWEEN.removeAll();
-  projectsElement.classList.remove('fadeout');
-  viewingProjects = true;
-  viewingAbout = false;
-  viewingHome = false;
-  tweenCamera(camera, [-5, 2, -10], 5000 );
-  setTimeout(() => {
-    tweenToProjects()
-  }, 5000)
-  setTimeout(() => {
-    projectsElement.classList.add('fadein');
-  }, 6000)
+  if (!viewingProjects) {
+    TWEEN.removeAll();
+    projectsElement.classList.remove('fadeout');
+    aboutSectionElement.classList.remove('fadein');
+    projectsElement.classList.add('fadeout');
+    viewingProjects = true;
+    viewingAbout = false;
+    viewingHome = false;
+    tweenCamera(camera, [-5, 2, -10], 5000 );
+    setTimeout(() => {
+      tweenToProjects()
+    }, 5000)
+    setTimeout(() => {
+      projectsElement.classList.remove('fadeout');
+      projectsElement.classList.add('fadein');
+    }, 6000)
+  }
 });
 
 document.querySelector('.about-text').addEventListener("click", () => {
-  TWEEN.removeAll();
-  projectsElement.classList.remove('fadein');
-  projectsElement.classList.add('fadeout');
-  viewingProjects = false;
-  viewingAbout = true;
-  viewingHome = false;
-  tweenCamera(camera, [4, 5, 1], 5000 );
-  setTimeout(() => {
-    tweenToAbout()
-  }, 5000)
+  if (!viewingAbout) {
+    TWEEN.removeAll();
+    projectsElement.classList.remove('fadein');
+    projectsElement.classList.add('fadeout');
+    viewingProjects = false;
+    viewingAbout = true;
+    viewingHome = false;
+    tweenCamera(camera, [4, 5, 1], 5000 );
+    setTimeout(() => {
+      tweenToAbout();
+    }, 5000)
+    setTimeout(() => {
+      aboutSectionElement.classList.add('fadein');
+    },6000)
+  }
 });
 
 tick()
