@@ -107,6 +107,7 @@ const sizes = {
  */
  const loadingBarElement = document.querySelector('.loading-bar');
  const aboutElement = document.querySelector('.about');
+ document.getElementById('body').style.visibility = 'visible';
 
  const loadingManager = new THREE.LoadingManager(
     // Loaded

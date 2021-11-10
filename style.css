@@ -11,6 +11,10 @@ canvas {
   left: 0;
 }
 
+.hidden {
+  display: none;
+}
+
 .about {
   position: fixed;
   top: 80%;
